@@ -32,6 +32,38 @@ document
       totalNewAvailableBalance;
   });
 
+  // cash out feature
+  document
+    .getElementById("withdraw-btn")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const amount = parseInt(document.getElementById("withdraw-amount").value);
+      const agentNumber = document.getElementById("agent-number").value;
+      const pinNumberWithdraw = parseInt(document.getElementById("withdraw-pin").value);
+
+      const availableBalance = parseInt(
+        document.getElementById("available-balance").innerText
+      );
+
+      if (agentNumber.length < 11) {
+        alert("Invalid agent Number");
+        return;
+      }
+
+      if (pinNumberWithdraw !== validPin) {
+        alert("Invalid pin Number");
+        return;
+      }
+
+      const totalNewAvailableBalance = availableBalance - amount;
+
+      console.log(totalNewAvailableBalance);
+
+      document.getElementById("available-balance").innerText =
+        totalNewAvailableBalance;
+    });
+
 // toggling feature
 
 document.getElementById("add-button").addEventListener("click", function (e) {
